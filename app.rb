@@ -1,12 +1,16 @@
 require 'roda'
 require 'sequel'
 require 'wedge'
-require 'shield'
+require_relative 'app/lib/shield_methods'
 
 class TestApp < Roda
   plugin :environments
   plugin :multi_route
   plugin :empty_root
+
+  use Rack::Session::Cookie, key: 'rack.session', secret: 'my_little_secret'
+
+  plugin ::ShieldMethods
 
   configure :development do
     require 'pry'
@@ -39,7 +43,14 @@ class TestApp < Roda
 
   route do |r|
     # Load the todo app
-    r.root { wedge(:todo).to_js :display }
+    r.root do
+      if current_user
+        wedge(:todo).to_js :display
+      else
+        r.redirect '/login'
+      end
+    end
+
 
     # Handles wedge calls
     r.wedge_assets
@@ -48,6 +59,7 @@ class TestApp < Roda
     # https://github.com/jeremyevans/roda/blob/master/lib/roda/plugins/multi_route.rb
     r.multi_route
   end
+
 end
 
 # Path to project folders

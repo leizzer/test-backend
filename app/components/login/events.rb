@@ -1,4 +1,5 @@
 require_relative '../../forms/login'
+require_relative '../../forms/register'
 
 if RUBY_ENGINE == 'opal'
   class Element
@@ -35,6 +36,27 @@ class TestApp
             login_user form.attributes do |res|
               if res[:success]
                 `window.location.replace('/')`
+              else
+                form.display_errors errors: res[:errors]
+              end
+            end
+          else
+            form.display_errors
+          end
+        ensure
+          button.prop("disabled", false)
+        end
+      end
+
+      on :submit, '#registration-form', form: :register_form, key: :user do |form, el|
+        button = el.find('button[type="submit"]')
+        button.prop("disabled", true)
+
+        begin
+          if form.valid?
+            register_user form.attributes do |res|
+              if res[:success]
+                dom.find('.toggle').trigger 'click'
               else
                 form.display_errors errors: res[:errors]
               end

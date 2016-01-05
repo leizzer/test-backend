@@ -56,7 +56,7 @@ namespace :db do
   desc 'Generate a timestamped, empty Sequel migration.'
   task :migration, :name do |_, args|
     if args[:name].nil?
-      puts 'You must specify a migration name (e.g. rake generate:migration[create_events])!'
+      puts 'You must specify a migration name (e.g. rake db:migration[create_events])!'
       exit false
     end
 
