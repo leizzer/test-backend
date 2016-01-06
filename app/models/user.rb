@@ -3,6 +3,8 @@ class User < Sequel::Model
 
   include Shield::Model
 
+  one_to_many :tasks
+
   def validate
     super
     validates_presence [:username, :email]
