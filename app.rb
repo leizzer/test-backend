@@ -51,6 +51,9 @@ class TestApp < Roda
       end
     end
 
+    r.on 'api' do
+      r.run Api
+    end
 
     # Handles wedge calls
     r.wedge_assets

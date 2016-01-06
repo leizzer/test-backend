@@ -17,4 +17,20 @@ class User < Sequel::Model
   def self.fetch identifier
     filter(username: identifier).first || filter(email: identifier).first
   end
+
+  def self.as_hash
+    { users: User.map(&:as_hash) }
+  end
+
+  def as_hash extended: false
+    {
+      user: {
+        id: id,
+        username: username,
+        email: email,
+        phone_number: phone_number,
+        tasks: extended ? tasks.map(&:values) : tasks.count
+      }
+    }
+  end
 end
