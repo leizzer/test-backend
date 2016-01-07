@@ -48,7 +48,7 @@ class TestApp
 
           { success: true, complete: task.read }
         else
-          { success: true, error: "Task doesn't exist or you don't have access" }
+          { success: false, error: "Task doesn't exist or you don't have access" }
         end
       end
     end

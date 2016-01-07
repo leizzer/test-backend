@@ -68,8 +68,10 @@ class TestApp
 
       on :click, '.taskItem' do |el, evt|
         read_task el.find('input').data('id') do |res|
-          el.find('.description, .date').remove_class "complete-#{!res[:complete]}"
-          el.find('.description, .date').add_class "complete-#{res[:complete]}"
+          if res[:success]
+            el.find('.description, .date').remove_class "complete-#{!res[:complete]}"
+            el.find('.description, .date').add_class "complete-#{res[:complete]}"
+          end
         end
       end
 
