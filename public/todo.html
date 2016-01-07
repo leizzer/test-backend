@@ -11,10 +11,23 @@
   </head>
   <body>
     <div>
-      <div class="container">
+      <div class="container clearfix">
+        <div class="sidebar-wrapper">
+          <div class="sidebar">
+            <h4><a href="/">My Todo</a></h4>
+            <hr>
+            <h5>Todos from other users</h5>
+            <ul id="users-todos">
+              <li class="user-todo">
+                <a href="#">User Name</a>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="content">
           <h1>NoGo</h1>
           <p class="tagline">an angularJS todo app</p>
+          <h4 class="user-name"></h5>
           <form id="todo-form">
             <div class="inputContainer">
               <input type="text" id="description" class="taskName" name="task[description]" placeholder="What do you need to do?">
@@ -36,9 +49,9 @@
               <button class="taskDelete"><i class="fa fa-trash-o icon"></i>Delete Tasks</button>
             </div>
           </form>
-          <ul  class="taskList">
+          <ul class="taskList">
             <li class="taskItem">
-              <input type="checkbox" class="taskCheckbox" data-id=''>
+              <input type="checkbox" class="taskCheckbox" data-id="">
               <span class="description complete-{{taskItem.complete}}">{{taskItem.description}}</span>
               <span class="category category-{{taskItem.category}}">{{taskItem.category}}</span>
               <strong class="date taskDate complete-{{taskItem.complete}}"><i class="fa fa-calendar"></i>{{taskItem.date | date : 'mediumDate'}}</strong>

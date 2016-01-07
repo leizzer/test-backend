@@ -25,6 +25,32 @@ body {
             box-shadow: 0 0 2px rgba(0,0,0,0.2);
 }
 
+.content h4.user-name {
+  text-align: center;
+  color: #777;
+}
+
+.sidebar-wrapper {
+  width: 0;
+  float: left;
+  left: -200px;
+  position: relative;
+  color: #777;
+}
+
+.sidebar {
+  width: 200px;
+  background: #ffffff;
+  padding: 20px 20px;
+  -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.2);
+          box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.sidebar a:link, .sidebar a:visited {
+  color: #95A5A6;
+  text-decoration: none;
+}
+
 .row {
     display: block;
     padding: 10px;
@@ -207,6 +233,10 @@ button {
     letter-spacing: 0.5px;
 }
 
+.taskItem:hover {
+  cursor: pointer;
+}
+
 .taskList .taskItem:nth-child(even) {
     background: #fcfcfc;
 }
@@ -343,4 +373,10 @@ footer a {
     border: none;
     outline: none;
     padding: 0 100px;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }

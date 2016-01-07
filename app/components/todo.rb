@@ -39,10 +39,19 @@ class TestApp
         end
 
         tmpl :task_item, dom.find('.taskItem')
+        tmpl :user_todo, dom.find('.user-todo')
+
       end
 
-      def list_tasks_for_user user_id = nil
-        list_tasks user_id
+      def sidebar_list
+        User.where(id: current_user.id).invert.each do |user|
+          user_todo_tmpl = tmpl :user_todo
+
+          user_todo_tmpl.find('a').html user.username
+          user_todo_tmpl.find('a').data "id", user.id
+
+          dom.find('#users-todos').append user_todo_tmpl
+        end
       end
 
       def add_task description = '', category = '', date = Date.today, complete = false, task_id = nil
@@ -50,9 +59,6 @@ class TestApp
 
         task_list_dom = dom.find('ul.taskList')
         task_item     = tmpl :task_item
-
-        # Task Id
-        task_item.find('input').data 'id', task_id
 
         # Description
         description_dom = task_item.find('.description')
@@ -68,6 +74,9 @@ class TestApp
         date_dom = task_item.find('.date')
         date_dom.html date.strftime('%m/%d/%Y')
         date_dom.add_class "complete-#{complete}"
+
+        # Task Id
+        task_item.find('input').attr 'data-id', task_id
 
         task_list_dom.append task_item
       end

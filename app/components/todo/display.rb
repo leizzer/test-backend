@@ -2,7 +2,8 @@ class TestApp
   module Components
     module TodoDisplay
       def display
-        list_tasks_for_user
+        display_tasks
+        sidebar_list if server?
 
         dom
       end

@@ -3,10 +3,13 @@ class TestApp
     module TodoServer
 
       def list_tasks user_id = nil
-        user = user_id ? User.find(user_id) : current_user
+        user = user_id ? User.find(id: user_id) : current_user
+        {success: true, tasks: user.tasks}
+      end
 
-        user.tasks.each do |task|
-          add_task task.description, task.category, task.due_date, task.read, task.id
+      def display_tasks user_id = nil
+        list_tasks(user_id)[:tasks].each do |task|
+          add_task task[:description], task[:category], task[:due_date], task[:read], task[:id]
         end
       end
 
@@ -38,10 +41,15 @@ class TestApp
       def read_task task_id
         ap task_id
 
-        task = Task.find id: task_id
-        task.update read: !task.read
+        task = Task.find id: task_id, user_id: current_user.id
 
-        { success: true, complete: task.read }
+        if task
+          task.update read: !task.read
+
+          { success: true, complete: task.read }
+        else
+          { success: true, error: "Task doesn't exist or you don't have access" }
+        end
       end
     end
   end

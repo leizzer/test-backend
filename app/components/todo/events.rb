@@ -27,6 +27,22 @@ class TestApp
         end
       end
 
+      on :click, '.user-todo a' do |el, evt|
+        evt.prevent_default
+
+        result = list_tasks el.data(:id)
+
+        dom.find('ul.taskList li').remove
+        dom.find('form').remove
+
+        result[:tasks].each do |task|
+          add_task task[:description], task[:category], Date.parse(task[:due_date]), task[:read], task[:id]
+        end
+
+        dom.find('h4.user-name').html "User: #{el.html}"
+        dom.find('input').remove
+      end
+
       on :click, '.taskDelete' do |el, evt|
         evt.prevent_default
 
