@@ -129,6 +129,11 @@ input[type="date"] {
     cursor: pointer;
 }
 
+input::-webkit-inner-spin-button,
+input::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
 input[type="date"]:focus, input[type="text"]:focus, select:focus {
     outline: none;
     background: #ecf0f1;
