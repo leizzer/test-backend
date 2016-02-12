@@ -18,10 +18,16 @@ group :development do
   gem 'rerun', '0.11.0'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem "pry"
   gem 'awesome_print'
 end
 
 group :test do
   gem 'rspec', '3.4.0'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'headless'
+end
+
+group :test, :development do
+  gem 'pry'
 end

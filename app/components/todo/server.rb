@@ -14,16 +14,14 @@ class TestApp
       end
 
       def create_task task
-        ap task
-
         task[:user_id] = current_user.id
+        task[:read] = false
         new_task = Task.new task
 
         if new_task.valid?
           new_task.save
           { success: true, task: new_task }
         else
-          ap new_task.errors
           { success: false,
             errors: new_task.errors
           }
@@ -31,16 +29,12 @@ class TestApp
       end
 
       def delete_tasks tasks
-        ap tasks
-
         if Task.where(id: tasks, user_id: current_user.id).destroy > 0
           { success: true }
         end
       end
 
       def read_task task_id
-        ap task_id
-
         task = Task.find id: task_id, user_id: current_user.id
 
         if task

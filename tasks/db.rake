@@ -46,9 +46,13 @@ namespace :db do
       exit false
     end
 
+    SEQUEL_DB.execute "PRAGMA foreign_keys = OFF;"
+
     SEQUEL_DB.tables.each do |t|
       SEQUEL_DB.drop_table t.to_sym
     end
+
+    SEQUEL_DB.execute "PRAGMA foreign_keys = ON;"
 
     Rake::Task['db:migrate'].execute
   end

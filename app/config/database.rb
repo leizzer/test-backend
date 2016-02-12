@@ -28,4 +28,4 @@ class TestApp
   end
 end
 
-Sequel::Migrator.check_current(TestApp::SEQUEL_DB, './db/migrate') unless Dir['./db/migrate/*'].empty?
+#Sequel::Migrator.check_current(TestApp::SEQUEL_DB, './db/migrate') unless Dir['./db/migrate/*'].empty?
