@@ -23,7 +23,6 @@ class TestApp
           if form.valid?
             create_task form.attributes do |res|
               if res[:success]
-                puts 'success'
                 add_task res[:task][:description], res[:task][:category], Date.parse(res[:task][:due_date]), res[:task][:read], res[:task][:id]
               else
                 form.display_errors errors: res[:errors]
