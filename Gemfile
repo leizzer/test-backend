@@ -24,8 +24,7 @@ end
 group :test do
   gem 'rspec', '3.4.0'
   gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'headless'
+  gem 'capybara-webkit'
 end
 
 group :test, :development do

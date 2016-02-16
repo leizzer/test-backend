@@ -31,6 +31,8 @@ describe 'App' do
         expect(page).to have_xpath '//*[contains(@class, "complete-true")]'
 
         find('span', text: 'Clean room').click
+
+        wait_for_ajax
         expect(page).to_not have_xpath '//*[contains(@class, "complete-true")]'
       end
     end
@@ -46,6 +48,7 @@ describe 'App' do
 
       find('button.taskDelete').click
 
+      wait_for_ajax
       expect(page).to_not have_css('.taskItem')
     end
   end

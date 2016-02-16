@@ -17,8 +17,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    childprocess (0.5.9)
-      ffi (~> 1.0, >= 1.0.11)
+    capybara-webkit (1.8.0)
+      capybara (>= 2.3.0, < 2.7.0)
+      json
     coderay (1.1.0)
     coffee-script (2.4.1)
       coffee-script-source
@@ -31,8 +32,8 @@ GEM
     eventmachine (1.0.8)
     execjs (2.6.0)
     ffi (1.9.10)
-    headless (2.2.2)
     hike (1.2.3)
+    json (1.8.3)
     listen (3.0.5)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -41,7 +42,6 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2015.1120)
     mini_portile2 (2.0.0)
-    multi_json (1.11.2)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
     opal (0.8.0)
@@ -87,12 +87,6 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
-    rubyzip (1.1.7)
-    selenium-webdriver (2.51.0)
-      childprocess (~> 0.5)
-      multi_json (~> 1.0)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0)
     sequel (4.29.0)
     shield (2.1.1)
       armor
@@ -108,7 +102,6 @@ GEM
       eventmachine (~> 1.0, >= 1.0.4)
       rack (~> 1.0)
     tilt (2.0.1)
-    websocket (1.2.2)
     wedge (0.2.1)
       nokogiri
       opal-jquery (~> 0.4.0)
@@ -124,8 +117,8 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capybara
+  capybara-webkit
   coffee-script
-  headless
   nokogiri (= 1.6.7)
   opal (= 0.8.0)
   opal-jquery (= 0.4.0)
@@ -134,7 +127,6 @@ DEPENDENCIES
   roda (= 2.8.0)
   roda-sprocket_assets (= 0.0.9)
   rspec (= 3.4.0)
-  selenium-webdriver
   sequel (= 4.29.0)
   shield (= 2.1.1)
   sqlite3

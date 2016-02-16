@@ -28,6 +28,8 @@ describe 'App' do
       end
 
       expect(page).to have_content 'Login to your account'
+
+      wait_for_ajax
       expect(User.all.count).to eql(users_count + 1)
     end
 
