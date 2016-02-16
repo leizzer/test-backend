@@ -23,6 +23,15 @@ Using the provided application add the following features:
 
 To install please run `make install` and then `make` to start the server.
 
+# Running Tests
+
+For run the test you must create a file named .env.test and have a test.db file
+
+    #.env.test
+    DATABASE_URL=sqlite://test.db
+
+Then run: `RACK_ENV=test rake db:refresh; RACK_ENV=test rake db:seed; rspec spec`
+
 Other Useful Documentation:
 
 - [opal](http://opalrb.org)
